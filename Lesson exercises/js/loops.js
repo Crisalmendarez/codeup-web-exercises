@@ -17,5 +17,10 @@ var x = 5;
 
 for (var num = 5; num <= 100; num += 5){
     console.log(num)
+    if(num === 50){
+        continue;
+    }
+    console.log(num + " is not 50")
+    //  console.log("num is still less than 50")
 }
 
