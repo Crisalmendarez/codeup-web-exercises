@@ -48,7 +48,6 @@ section {
 section:nth-of-type(1) {
     height: 3em;
     background: lightgreen;
-    text-align-last:;
     /* enter needed declarations here */
 }
 section:nth-of-type(1) div:last-child {
