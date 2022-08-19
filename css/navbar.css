@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    background: grey;
+}
+
+ul{
+    list-style-type: none;
+    display: flex;
+}
+
+li{
+
+}
+
+a{
+    padding: 15px;
+}
+
+a:hover{
+    color: blue;
+    display: inline-block;
+}
