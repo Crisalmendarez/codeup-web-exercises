@@ -20,9 +20,14 @@ button{
     align-items: center;
     color: black;
     display: flex;
-    margin-left: 115px;
+    margin-left: 135px;
+    background-size: cover;
 }
 
 h1{
     text-align: center;
+}
+
+h2{
+    margin-left: 135px;
 }
