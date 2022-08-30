@@ -5,7 +5,6 @@
   <title>DOM: Query and Modify</title>
 </head>
 <body>
-
 <h1 id="main-header">Hello World!</h1>
 <ul>
   <li data-dbid="1">Item 1</li>
@@ -24,7 +23,13 @@
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
   culpa qui officia deserunt mollit anim id est laborum.
 </p>
-
+<button id="btn1">Click Me!</button>
+<br>
+<button id="btn2">Click Me! If you want</button>
+<br>
+<button id="btn3"> Don't Click Me!</button>
+<br>
+<button id="btn4">Click Me Now!</button>
 <script>
   (function() {
     "use strict";
@@ -68,7 +73,30 @@
 
     // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
     subParagraphs[0].innerHTML = "Mission Accomplished!!"
+
+
+    var listener = function (event) {
+      alert('Javascript is cool');
+    }
+    document.getElementById('btn1').addEventListener('click', listener);
+
+    var listener = function (event) {
+      alert('HEY');
+    }
+    document.getElementById('btn2').addEventListener('dblclick', listener);
+
+    var listener = function (event) {
+      alert('BYE');
+    }
+    document.getElementById('btn3').addEventListener('click', listener);
+
+    var listener = function (event) {
+      alert('Mission Accomplished!');
+    }
+    document.getElementById('btn4').addEventListener('dblclick', listener);
+
   })();
+
 </script>
 
 
