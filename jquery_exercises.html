@@ -7,12 +7,13 @@
 <body>
 <div id="container">
     <h1 id="heading">HELLO </h1>
-    <p id="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum eius nobis obcaecati quos repellat. Aliquid animi
+    <p id="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum eius nobis obcaecati quos repellat.
+        Aliquid animi
         architecto commodi cum debitis deleniti ea enim et magni maiores quaerat quibusdam, quidem suscipit.</p>
-    <ul>
-        <li class="codeup">Item 1</li>
-        <li class="codeup">Item 2</li>
-        <li id="codeup">Item 3</li>
+    <ul id="codeup">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
     </ul>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -20,15 +21,42 @@
         crossorigin="anonymous"></script>
 <script src="js/jquery_exercises.js"></script>
 <script>
-  //$("#heading")
-  //alert(jQuery("#content").html())
+    //Selector exercise Start
 
-  //$(".codeup").css("border", "1px solid red")
+    //$("#heading")
+    //alert(jQuery("#content").html())
 
-  $("li").css("font-size", "20px")
-  $("h1, p, li").css("background", "lime");
+    //$(".codeup").css("border", "1px solid red")
 
-  alert($("h1").html());
+    //$("li").css("font-size", "20px")
+    //$("h1, p, li").css("background", "lime");
+
+    //alert($("h1").html());
+
+    // Selector exercise end
+    var container = $("#heading")
+    var fun = function (){
+        container.css("background", "red")
+    }
+    container.click(fun)
+
+    var content = $("#content");
+    content.dblclick(function(e){
+        console.log(e);
+        content.css("font-size","18px")
+    })
+
+    var codeup = $("#codeup");
+    console.log(codeup.html())
+    var handlerIn = function (){
+        codeup.css("color", "red")
+    }
+    var handlerOut = function (){
+        // alert("hovered out")
+        codeup.css("color", "black")}
+    codeup.hover(handlerIn, handlerOut)
+
+
 </script>
 </body>
 </html>
