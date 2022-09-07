@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>my header</h1>
+<h2>Cristian Almendarez</h2>
+<p>my content</p>
+<style>
+
+</style>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+
+//    var par = $('h2').html();
+//    $("h2").click(function () {
+//        confirm(`Hey ${par} how's it going`)
+//    })
+
+    // $("h1").css("color", "red").css("border", "1px solid brown");
+    // console.log($("h1").css("color"));
+    // console.log($("body").css("width"))
+
+    // $("h1").css({
+    //     "color": "brown",
+    //     "border": "1px solid brown"
+    //
+    // })
+
+
+    $("h2").click(function (){
+        $(this).addClass("highlightedStyle")
+        console.log($("h2"));
+        $(".highlightedStyle").css("background", "blue")
+
+    });
+
+    $("h2").dblclick(function (){
+        $("h2").removeClass("highlightStyle").css("background", "none")
+
+    });
+
+    console.log($("h2"));
+
+</script>
+</body>
+</html>
