@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Click me to turn me red</h1>
+<p>Please type something into this form:</p>
+<form>
+    <input type="text" id="textfield" name="textfield" placeholder="Type Here"/>
+</form>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    // $("#textfield").keydown(function (){
+    //     console.log("event fired off")
+    //     console.log($(this).val())
+    //     console.log(e.key)
+    //
+    //     alert("a key was pushed down!")
+    // })
+
+    // $("#textfield").keypress(function (e){
+    //     console.log("event fired off")
+    //     console.log($(this).val())
+    //
+    //     console.log(e.key)
+    //
+    //     alert("a key was pushed down")
+    // })
+
+    // $("#textfield").keyup(function (e){
+    //     console.log("event fired off")
+    // })
+    // alert("a key was released")
+    // console.log("this appears after my alert")
+
+    $("h1").on("click", function (){
+        $(this).css("color", "red")
+        console.log("changing h1 tag")
+    });
+
+    $("#btn").on("click", function(){
+        $('#h1').off();
+    });
+</script>
+
+</body>
+</html>
