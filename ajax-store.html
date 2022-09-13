@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+
+<dl id="products">
+
+        <dt>
+            <dd>Title</dd>
+            <dd>Quantity</dd>
+            <dd>Price</dd>
+            <dd>Categories</dd>
+        </dt>
+
+    <tbody id="insertProducts"></tbody>
+</dl>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>
+(function() {
+    "use strict";
+    // TODO: Create an AJAX GET request for the file under data/inventory.json
+
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+})();
+
+$.get("data/inventory.json/hammer").done(function (orders){
+    console.log(orders)
+})
+
+
+</script>
+
+</body>
+</html>
