@@ -26,7 +26,7 @@ $('.go-to-btn').on('click', function(){
 
 
 //6.
-$('#append-to-ul').on.('click', function (){
+$('#append-to-ul').on('click', function (){
     $('#append-to-me').append('<li>text</li>')
 })
 
@@ -44,7 +44,7 @@ $('#hl-toggle li').on('click', function(){
 
 //9.
 $('#upcase-name').on('click', function(){
-    console.log($('input').val();
+    console.log($('input').val());
     $('#output').text('Your name uppercased is: ' + input.toUpperCase())
 })
 
