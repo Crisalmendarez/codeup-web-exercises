@@ -1,238 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Weather Map Project</title>
-    <!-- Mapbox CSS -->
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- 5 Day Forcast -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-    <!-- Search Bar On Map-->
-    <link rel='stylesheet'
-          href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
-          type='text/css'/>
-    <!--GOOGLE FONTS-->
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=IM+Fell+English&display=swap"-->
-<!--          rel="stylesheet">-->
-    <style>
-        .card {
-            margin: 9px;
-        }
-
-        #map {
-            /* the width and height may be set to any size */
-            width: 100%;
-            height: 400px;
-            position: fixed;
-            bottom: 0;
-            margin: 0;
-        }
-
-        h1 {
-            background-color: blueviolet;
-            color: white;
-            width: 100%;
-        }
-
-        div > .card {
-            height: 275px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Cowboys Weather Map</title>
+    <!-- Mapbox -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <!-- Favicon -->
+    <link rel="icon" href="../img/weatherFavicon1.png">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Anton&display=swap" rel="stylesheet">
+    <!-- Connected weather_map.css -->
+    <link rel="stylesheet" href="../css/weather_map.css" />
 </head>
+
 <body>
-<!-- NavBar  -->
-<nav class="navbar navbar-light bg-light justify-content-between">
-    <a class="navbar-brand">Weather App/Five Day Forecast</a>
-    <form class="form-inline">
-        <input id="userInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button id='btn' class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-    </form>
+<!--NAVBAR-->
+<nav class="navbar">
+    <div class="container-fluid">
+        <h1 id="weatherTitle"><b>Weather Map</b></h1>
+        <h1 id="currentLocation"></h1>
+    </div>
 </nav>
-
-<section class="ajax-section">
-    <div class="container">
-        <ul class="cities"></ul>
-
-    </div>
-</section>
-
-
-
-<!-- Map Existence -->
-<div id='map'></div>
-<!-- Cards for 5-day weather forecast -->
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
-            <div class="col-lg-8 grid-margin stretch-card">
-                <!--weather card-->
-                <div class="card card-weather">
-                    <div class="card-body">
-                        <div class="weather-date-location">
-                            <h3>Friday</h3>
-                            <p class="text-gray">
-                                <span class="weather-date">25 March, 2019</span>
-                                <span class="weather-location">Sydney, Australia</span>
-                            </p>
-                        </div>
-                        <div class="weather-data d-flex">
-                            <div class="mr-auto">
-                                <h4 class="display-3">32
-                                    <span class="symbol">&deg;</span>C</h4>
-                                <p>
-                                    Cloudy
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="d-flex weakly-weather">
-                            <div class="weakly-weather-item">
-                                <p class="mb-0">
-                                    Sun
-                                </p>
-                                <i class="mdi mdi-weather-cloudy"></i>
-                                <p class="mb-0">
-                                    30&deg;
-                                </p>
-                            </div>
-                            <div class="weakly-weather-item">
-                                <p class="mb-1">
-                                    Mon
-                                </p>
-                                <i class="mdi mdi-weather-hail"></i>
-                                <p class="mb-0">
-                                    31&deg;
-                                </p>
-                            </div>
-                            <div class="weakly-weather-item">
-                                <p class="mb-1">
-                                    Tue
-                                </p>
-                                <i class="mdi mdi-weather-partlycloudy"></i>
-                                <p class="mb-0">
-                                    28&deg;
-                                </p>
-                            </div>
-                            <div class="weakly-weather-item">
-                                <p class="mb-1">
-                                    Wed
-                                </p>
-                                <i class="mdi mdi-weather-pouring"></i>
-                                <p class="mb-0">
-                                    30&deg;
-                                </p>
-                            </div>
-                            <div class="weakly-weather-item">
-                                <p class="mb-1">
-                                    Thu
-                                </p>
-                                <i class="mdi mdi-weather-pouring"></i>
-                                <p class="mb-0">
-                                    29&deg;
-                                </p>
-                            </div>
-                            <div class="weakly-weather-item">
-                                <p class="mb-1">
-                                    Fri
-                                </p>
-                                <i class="mdi mdi-weather-snowy-rainy"></i>
-                                <p class="mb-0">
-                                    31&deg;
-                                </p>
-                            </div>
-                            <div class="weakly-weather-item">
-                                <p class="mb-1">
-                                    Sat
-                                </p>
-                                <i class="mdi mdi-weather-snowy"></i>
-                                <p class="mb-0">
-                                    32&deg;
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--weather card ends-->
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<!--<div class="d-flex w-75" id="container">-->
-<!--    <div class="col-lg-3 card" style="width: 18rem;">-->
-<!--        <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--        <div class="card-body">-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3 card" style="width: 18rem;">-->
-<!--        <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--        <div class="card-body">-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3 card" style="width: 18rem;">-->
-<!--        <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--        <div class="card-body">-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3 card" style="width: 18rem;">-->
-<!--        <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--        <div class="card-body">-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3 card" style="width: 18rem;">-->
-<!--        <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--        <div class="card-body">-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!-- Keys -->
-<script src="../js/keys.js"></script>
-<!-- Geocoder -->
-<script src="../js/mapbox-geocoder-utils.js"></script>
-<!-- JS -->
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<!--Map / forecast for map-->
+<main id="header">
+    <div id="geocoder" class="geocoder mt-3 mb-3 w-75"></div>
+    <div id="forecast"></div>
+    <div id="map"></div>
+</main>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<!-- Mapbox -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+<!-- script for keys.js -->
+<script src="../js/keys.js"></script>
 <script>
+
     "use strict";
 
-    mapboxgl.accessToken = MAPBOX_TOKEN;
 
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v10',
+    // Mapbox token
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+    const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/dark-v10",
         zoom: 10,
         center: [-96.7970, 32.7767]
     });
+    let marker = new mapboxgl.Marker({draggable: true});
 
-    $('#btn').on('click', function () {
-        // let geocoder = new MapboxGeocoder({
-        //     accessToken: mapboxgl.accessToken,
-        //     mapboxgl: mapboxgl
-        // })
-        let userInput = $("#userInput").val();
-        geocode(userInput, MAPBOX_TOKEN).then(function(result) {
-            console.log(result);
-            map.setCenter(result);
-            map.setZoom(10);
+    // On click, marker if placed / updates weather
+    map.on("click", function(event) {
+        let coordinates = event.lngLat;
+        marker.setLngLat(coordinates).addTo(map);
+        map.flyTo({
+            center: [coordinates.lng, coordinates.lat],
+            zoom: 10,
+            essential: true
         });
-
+        getRequest(coordinates.lat, coordinates.lng);
     });
 
+    // On drag, marker if placed / updates weather
+    marker.on("dragend", function() {
+        let dragendCoord = marker.getLngLat();
+        map.flyTo({
+            center: [dragendCoord.lng, dragendCoord.lat],
+            zoom: 10,
+            essential: true
+        });
+        getRequest(dragendCoord.lat, dragendCoord.lng);
+    });
+
+    const geocoder = new MapboxGeocoder({
+        accessToken: MAPBOX_TOKEN,
+        mapboxgl: mapboxgl
+    });
+    $("#geocoder").append(geocoder.onAdd(map));
+    $("#geocoder").on("keyup", function(e) {
+        if (e.key === "Enter") {
+            let geoLat = geocoder.mapMarker._lngLat.lat;
+            let geoLon = geocoder.mapMarker._lngLat.lng;
+            getRequest(geoLat, geoLon);
+
+            function createHTML(data) {
+                //Loop to get information from API and add it to cards
+                let html = ``;
+                for(let i = 0; i < 33; i += 8) {
+                    let date = new Date (data.list[i].dt * 1000).toLocaleString('default', {weekday: 'long'});
+                    html += `
+                        <div class="card behind">
+                            <h6 class="date card-header d-flex justify-content-center">${date}</h6>
+                            <span class="low-high d-flex justify-content-center mt-2 fs-6">Low / High</span>
+                            <h6 class="temp d-flex justify-content-center fw-bold">${data.list[i].main.temp_min}°F / ${data.list[i].main.temp_max}°F</h6>
+                            <img id="weatherIcons" class="d-flex justify-content-center"
+                            src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="Weather icon">
+                            <hr>
+                            <p class="forecastFont ms-4">Description: <b>${data.list[i].weather[0].description}</b></p>
+                            <hr>
+                            <p class="forecastFont ms-4">Humidity: <b>${data.list[i].main.humidity}</b></p>
+                            <hr>
+                            <p class="forecastFont ms-4">Wind: <b>${data.list[i].wind.speed}</b></p>
+                            <hr>
+                            <p class="forecastFont ms-4">Pressure: <b>${data.list[i].main.pressure}</b></p>
+                        </div>
+                    `
+                }
+                return html;
+            }
+
+            function getRequest(lat, lon) {
+                let forecast = $.get("https://api.openweathermap.org/data/2.5/forecast", {
+                    APPID: WEATHER_APP_ID,
+                    lat: lat,
+                    lon: lon,
+                    units: "imperial",
+                });
+                // API info from OpenWeather api displayed on cards.
+                forecast.done(function(data) {
+                    let today = new Date();
+                    let time = today.getHours() + ":" + today.getMinutes();
+                    if (today.getHours() > "12") {
+                        time = time + " pm";
+                    } else {
+                        time = time + " am";
+                    }
+                    let forecastCard = createHTML(data);
+                    $("#forecast").html(forecastCard);
+                    $("#currentLocation").html(`Current Location: ${data.city.name}, ${data.city.country}`);
+                    $("#time-stamp").html(`Forecast updated as of ${time}`);
+                }).fail(function(jqXhr, status, error) {
+                    alert(`${status.toUpperCase()}`);
+                });
+            }
+            getRequest(32.7767, -96.7970);
+
+        }
+    });
 </script>
 </body>
 </html>

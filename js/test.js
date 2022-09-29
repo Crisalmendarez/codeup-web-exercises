@@ -43,7 +43,7 @@ $('#hl-toggle li').on('click', function(){
 });
 
 //9.
-$('#upcase-name').on('click', function(){
+$('#uppercase-name').on('click', function(){
     console.log($('input').val());
     $('#output').text('Your name uppercased is: ' + input.toUpperCase())
 })
